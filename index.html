@@ -22,10 +22,10 @@
 			</div>
 			<div class="nav_menu">
 				<a class="nav_menu_link" href="#">Chat</a>
-                <a class="nav_menu_link" href="#">Texts</a>
-                <a class="nav_menu_link" href="#">Concerts</a>
-				<a class="nav_menu_link" href="#">Contacts</a>
-				<a class="nav_menu_link" href="#">Feedback</a>
+                <!--<a class="nav_menu_link" href="#">Texts</a>-->
+                <a class="nav_menu_link concerts_nav" href="#">Concerts</a>
+				<a class="nav_menu_link contacts_nav" href="#">Contacts</a>
+				<a class="nav_menu_link feedback_nav" href="#">Feedback</a>
 				<a class="nav_menu_link orange music_nav" href="#">Music</a>
 			</div>
 		</div>
@@ -34,7 +34,8 @@
             <canvas id="spark-canvas" width="" height=""></canvas>
         </div>
         <div class="content_wrapper">
-        	<div id="root">
+        	
+            <div id="root">
                 <div class="music_container">
                     <div class="music_left">
                         <div id="fidelity" class="album_wrapper move_left"></div>
@@ -74,7 +75,7 @@
                             </div>
                         </div>
                         <div class="player_progress_wrapper">
-                           <!--<div class="player_progress"></div>-->
+                           
                         </div>
                     </div>
                     <div class="music_right">
@@ -84,32 +85,113 @@
                         <div id="fallen_birds" class="album_wrapper move_right"></div>
                     </div>
                 </div>
+                <!--<div class="dynamic_container">
+                    <div class="feedback_wrapper">
+                        <h2 class="feedback_main_title">Get in touch</h2>
+                        <form action="" class="feedback_form">
+                            <div class="feedback_input_wrapper">
+                                <div class="feedback_input_container">
+                                    <h3 class="feedback_input_title" >Name:</h3>
+                                    <input type="text" class="feedback_input" >
+                                    <h3 class="feedback_input_title" >Email:</h3>
+                                    <input type="text" class="feedback_input" >
+                                </div>
+                                <div class="feedback_img_wrapper">
+                                    <i class="fa fa-connectdevelop fa-5x" aria-hidden="true"></i>
+                                </div>    
+                            </div>
+                            <h3 class="feedback_textarea_title">Message</h3>
+                            <textarea name="" id="" cols="30" rows="10" class="feedback_textarea"></textarea>
+                            <button class="feedback_button">Send</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="dynamic_container">
+                    <div class="contact_link_wrapper">
+                      <a href="https://exo11@icloud.com" class="contact_link">exo11@icloud.com</a>
+                      <a href="https://vk.com/prosvet_music" class="contact_link">vk.com/prosvet_music</a>
+                      <a href="https://t.me/exo11" class="contact_link">t.me/exo11</a>
+                      <a href="https://github.com/exo11" class="contact_link">github.com/exo11</a>
+                    </div>
+                </div>
+                <div class="dynamic_container">
+                    <div class="concert_card_wrapper">
+                        <h2 class="concert_card_main-title">Upcoming shows</h2>
+                        <div class="concert_card_container">
+                            <div class="concert_card">
+                                <div class="concert_card_title">21/09/2125</div>
+                                <div class="concert_card_content_wrapper">
+                                    <div class="concert_card_content">
+                                        <p class="concert_card_content_club"> The Cupboard Under the Stairs</p> 
+                                        <p class="concert_card_content_address">Number 4 Privet Drive, Little Whinging, Surrey, England</p>
+                                        <p class="concert_card_content_time">19:00</p>
+                                    </div>
+                                </div>
+                                <a href="#" class="concert_card_buy-ticket">Buy ticket</a>
+                            </div>
+                            <div class="concert_card">
+                                <div class="concert_card_title">21/09/2125</div>
+                                <div class="concert_card_content_wrapper">
+                                    <div class="concert_card_content">
+                                        <p class="concert_card_content_club"> The Cupboard Under the Stairs</p> 
+                                        <p class="concert_card_content_address">Number 4 Privet Drive, Little Whinging, Surrey, England</p>
+                                        <p class="concert_card_content_time">19:00</p>
+                                    </div>
+                                </div>
+                                <a href="#" class="concert_card_buy-ticket">Buy ticket</a>
+                            </div>
+                            <div class="concert_card">
+                                <div class="concert_card_title">21/09/2125</div>
+                                <div class="concert_card_content_wrapper">
+                                    <div class="concert_card_content"> 
+                                        <p class="concert_card_content_club"> The Cupboard Under the Stairs</p>
+                                        <p class="concert_card_content_address">Number 4 Privet Drive, Little Whinging, Surrey, England</p>
+                                        <p class="concert_card_content_time">19:00</p>
+                                    </div>
+                                </div>
+                                <a href="#" class="concert_card_buy-ticket">Buy ticket</a>
+                            </div>
+                            <div class="concert_card">
+                                <div class="concert_card_title">21/09/2125</div>
+                                <div class="concert_card_content_wrapper">
+                                    <div class="concert_card_content">
+                                        <p class="concert_card_content_club"> The Cupboard Under the Stairs</p> 
+                                        <p class="concert_card_content_address">Number 4 Privet Drive, Little Whinging, Surrey, England</p>
+                                        <p class="concert_card_content_time">19:00</p>
+                                    </div>
+                                </div>
+                                <a href="#" class="concert_card_buy-ticket">Buy ticket</a>
+                            </div>
+                        </div> 
+                    </div>
+                </div>-->
             </div>
+           
         	<div class="footer">
         		<div class="footer_btn-wrapper">
         			<i id="sparks_btn" class="fa fa-fire fa-2x" aria-hidden="true"></i>
         		</div>
         		<div class="footer_social">
         			<div class="footer_social_logo-wrapper">
-        			    <a href="#" class="social_logo-link">
+        			    <a href="https://github.com/exo11" class="social_logo-link">
         				    <i class="fa fa-github-alt fa-2x social_logo" aria-hidden="true"></i>
         			     </a>
-					    <a href="#" class="social_logo-link">
+					    <a href="https://play.google.com/store/music/artist/%D0%AD%D1%85%D0%BE11?id=Acszgszcotddrgx7e35gzz76dvy" class="social_logo-link">
 						    <img src="google_play.png" alt="" class="social_logo google_play">
         			    </a>
-					    <a href="#" class="social_logo-link">
+					    <a href="https://music.yandex.ru/artist/2624253" class="social_logo-link">
         				    <img src="ymusic-logo-cut.png" alt="" class="social_logo yandex_music">
         			    </a>
-					    <a href="#" class="social_logo-link">
+					    <a href="https://vk.com/exo11" class="social_logo-link">
         				    <img src="vk-logo.png" alt="" class="social_logo vk">
         			    </a>
-					    <a href="#" class="social_logo-link">
+					    <a href="https://www.last.fm/ru/music/%D0%AD%D1%85%D0%BE11" class="social_logo-link">
         				    <img src="last-fm.png" alt="" class="social_logo last_fm">
         			    </a>
 					    <a href="#" class="social_logo-link">
         				    <img src="twiter-logo.png" alt="" class="social_logo twitter">
         			    </a>
-					    <a href="#" class="social_logo-link">
+					    <a href="https://www.apple.com/ru/itunes/" class="social_logo-link">
         				    <img src="itunes.png" alt="" class="social_logo itunes">
         			    </a>
 					</div>
@@ -133,4 +215,5 @@
 </body>
     <script src="js/index.js"></script>
     <script src="js/sparks.js"></script>
+    <script src="js/createNode.js"></script>
 </html>
