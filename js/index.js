@@ -79,7 +79,6 @@ function playListVisible(evt) {
 }
 
 function playerNavHandler(evt,album) {
-  console.log(album);
   if (evt.target.classList.contains('fa-play') && evt.target.classList.contains('play-pause_action')) {
     playerContent.play();
     addPause();
@@ -132,28 +131,6 @@ function brightnessRangeHandler(evt) {
   backgroundImg.style.opacity = evt.target.value / 1000;
 }
 
-addEclipse();
-
-function addEclipse() { 
-  const interval = setInterval(eclipse, 30);
-  backgroundImg.style.opacity = 0.40;
-  
-  function eclipse() {
-    backgroundImg.style.opacity -= 0.001;
-    brightnessRange.value -= 1;
-    albumOpacityCount += 0.0056;
-    Array.from(albumWrapper).forEach(album => album.style.opacity = albumOpacityCount);
-    if (getComputedStyle(backgroundImg).opacity <= 0.15 || stopEclipse) {
-      Array.from(albumWrapper).forEach(album => setTimeout(() => {
-        album.style.opacity = '0.7'
-      }, 600));	
-      clearInterval(interval);
-    }
-  }
-}
-
-
-
 function navMenuHandler(evt) {
   if (evt.target.classList.contains('nav_menu_link')) {
     Array.from(navMenu.children).forEach(link => link.classList.remove('nav_link_select'));
@@ -165,7 +142,6 @@ function navMenuHandler(evt) {
       Array.from(albumWrapper).forEach(album => {
         album.classList.remove('move_left_go', 'move_right_go');
       });
-      
       musicContainer.classList.add('music_container_transparent');
       setTimeout(() =>  musicContainer.style.display = 'none', 1000);
       playerWrapper.classList.remove('player_wrapper-visible');
@@ -192,7 +168,6 @@ function musicNavHandler(evt) {
   playerCoating.classList.toggle('player_container_coating_none');
   dinamicVisible = true;
   if (!playListSmoothChange) {
-    playList.style.backgroundImage = 'url(album_cover/brightness.jpg)';
     playList.classList.add('play_list_visible');  
     playName.textContent = 'Выберите альбом'; 
     playerAlbumTitle.textContent = 'Select the album';
@@ -225,6 +200,25 @@ function dynamicVisible(func) {
         .classList.add('dynamic_visible')
     }, 100);
   });
+}
+
+addEclipse();
+
+function addEclipse() { 
+  const interval = setInterval(eclipse, 30);
+  backgroundImg.style.opacity = 0.40;
+  function eclipse() {
+    backgroundImg.style.opacity -= 0.001;
+    brightnessRange.value -= 1;
+    albumOpacityCount += 0.0056;
+    Array.from(albumWrapper).forEach(album => album.style.opacity = albumOpacityCount);
+    if (getComputedStyle(backgroundImg).opacity <= 0.15 || stopEclipse) {
+      Array.from(albumWrapper).forEach(album => setTimeout(() => {
+        album.style.opacity = '0.7'
+      }, 600)); 
+      clearInterval(interval);
+    }
+  }
 }
 
 /* --------------------- audio objects--------------------*/

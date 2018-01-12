@@ -60,7 +60,7 @@ function getFire() {
       this.pos.y -= this.velocity;
       this.alpha -= 0.0005;
       ctx.beginPath();
-      ctx.arc(this.pos.x, this.pos.y, this.scale * 4, 0, 2 * Math.PI, false);
+      ctx.arc(this.pos.x, this.pos.y, this.scale * 3, 0, 2 * Math.PI, false);
       ctx.fillStyle = this.color[this.randomInt(0,10)];
       ctx.fill();
     };
@@ -86,10 +86,17 @@ function getFire() {
 
   
   function sparksBtnHandler() {
-    animateSpark = animateSpark ? false : true;
-    sparksBtn.classList.toggle('stopSparks');
+    if (animateSpark) {
+      canvas.classList.add('spark-invisible');
+      sparksBtn.classList.add('stopSparks');
+      setTimeout(() => {animateSpark = false}, 2000);
+    } else {
+      canvas.classList.remove('spark-invisible');
+      sparksBtn.classList.remove('stopSparks');
+      animateSpark = true;
+    }
   }
- 
+
 
   function animate() {
     if(animateSpark) {

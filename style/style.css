@@ -19,6 +19,20 @@ body {
   overflow: hidden;
 }
 
+.canvas-wrapper {
+ display: flex;
+ justify-content: center;
+}
+
+.spark-canvas {
+ transition: 5s;
+ opacity: 1;
+}
+
+.spark-invisible {
+  opacity: 0;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -137,7 +151,7 @@ body {
 }
 
 #snowfall {
-  background-image: url(../album_cover/snowfall.jpg);
+  background-image: url(../album_cover/snowfall_1.jpg);
 }
 
 #on_the_verge {
@@ -220,6 +234,7 @@ body {
   border: 1px solid #93CBCC;
   background-color: transparent;
   background-size: cover;
+  background-image: url(../album_cover/brightness.jpg);
   border-radius: 50%;
   transition: 1s;
   opacity: 0;
