@@ -21,7 +21,7 @@
 				<a href="#" class="nav_logo-wrapper_link"><img class="nav_logo-wrapper_logo" src="exo11_7.png" alt="logo"></a>
 			</div>
 			<div class="nav_menu">
-				<a class="nav_menu_link" href="#">Chat</a>
+				<a class="nav_menu_link chat_nav" href="#">Chat</a>
                 <!--<a class="nav_menu_link" href="#">Texts</a>-->
                 <a class="nav_menu_link concerts_nav" href="#">Concerts</a>
 				<a class="nav_menu_link contacts_nav" href="#">Contacts</a>
@@ -38,10 +38,18 @@
             <div id="root">
                 <div class="music_container">
                     <div class="music_left">
-                        <div id="fidelity" class="album_wrapper move_left"></div>
-                        <div id="planet" class="album_wrapper"></div>
-                        <div id="black_butterfly" class="album_wrapper"></div>
-                        <div id="snowfall" class="album_wrapper move_left"></div>
+                        <div id="fidelity" class="album_wrapper move_left">
+                            
+                        </div>
+                        <div id="planet" class="album_wrapper">
+                           
+                        </div>
+                        <div id="black_butterfly" class="album_wrapper">
+                            
+                        </div>
+                        <div id="snowfall" class="album_wrapper move_left">
+                           
+                        </div>
                     </div>
                     <div class="player_wrapper">
                         <div class="player_album-title_wrapper">
@@ -49,6 +57,7 @@
                         </div>
                         <div class="play_list_wrapper">
                             <div class="play_list">
+                                <div class="cover_eclipse"></div>
                                 <div class="play_list-coating"></div>
                             </div>
                         </div>
@@ -73,6 +82,7 @@
                                 <div class="soundControl"></div>
                                 <div class="play_time">00:00</div>
                             </div>
+                            <div class="player_container_coating"></div>
                         </div>
                         <div class="player_progress_wrapper">
                            
@@ -85,86 +95,8 @@
                         <div id="fallen_birds" class="album_wrapper move_right"></div>
                     </div>
                 </div>
-                <!--<div class="dynamic_container">
-                    <div class="feedback_wrapper">
-                        <h2 class="feedback_main_title">Get in touch</h2>
-                        <form action="" class="feedback_form">
-                            <div class="feedback_input_wrapper">
-                                <div class="feedback_input_container">
-                                    <h3 class="feedback_input_title" >Name:</h3>
-                                    <input type="text" class="feedback_input" >
-                                    <h3 class="feedback_input_title" >Email:</h3>
-                                    <input type="text" class="feedback_input" >
-                                </div>
-                                <div class="feedback_img_wrapper">
-                                    <i class="fa fa-connectdevelop fa-5x" aria-hidden="true"></i>
-                                </div>    
-                            </div>
-                            <h3 class="feedback_textarea_title">Message</h3>
-                            <textarea name="" id="" cols="30" rows="10" class="feedback_textarea"></textarea>
-                            <button class="feedback_button">Send</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="dynamic_container">
-                    <div class="contact_link_wrapper">
-                      <a href="https://exo11@icloud.com" class="contact_link">exo11@icloud.com</a>
-                      <a href="https://vk.com/prosvet_music" class="contact_link">vk.com/prosvet_music</a>
-                      <a href="https://t.me/exo11" class="contact_link">t.me/exo11</a>
-                      <a href="https://github.com/exo11" class="contact_link">github.com/exo11</a>
-                    </div>
-                </div>
-                <div class="dynamic_container">
-                    <div class="concert_card_wrapper">
-                        <h2 class="concert_card_main-title">Upcoming shows</h2>
-                        <div class="concert_card_container">
-                            <div class="concert_card">
-                                <div class="concert_card_title">21/09/2125</div>
-                                <div class="concert_card_content_wrapper">
-                                    <div class="concert_card_content">
-                                        <p class="concert_card_content_club"> The Cupboard Under the Stairs</p> 
-                                        <p class="concert_card_content_address">Number 4 Privet Drive, Little Whinging, Surrey, England</p>
-                                        <p class="concert_card_content_time">19:00</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="concert_card_buy-ticket">Buy ticket</a>
-                            </div>
-                            <div class="concert_card">
-                                <div class="concert_card_title">21/09/2125</div>
-                                <div class="concert_card_content_wrapper">
-                                    <div class="concert_card_content">
-                                        <p class="concert_card_content_club"> The Cupboard Under the Stairs</p> 
-                                        <p class="concert_card_content_address">Number 4 Privet Drive, Little Whinging, Surrey, England</p>
-                                        <p class="concert_card_content_time">19:00</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="concert_card_buy-ticket">Buy ticket</a>
-                            </div>
-                            <div class="concert_card">
-                                <div class="concert_card_title">21/09/2125</div>
-                                <div class="concert_card_content_wrapper">
-                                    <div class="concert_card_content"> 
-                                        <p class="concert_card_content_club"> The Cupboard Under the Stairs</p>
-                                        <p class="concert_card_content_address">Number 4 Privet Drive, Little Whinging, Surrey, England</p>
-                                        <p class="concert_card_content_time">19:00</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="concert_card_buy-ticket">Buy ticket</a>
-                            </div>
-                            <div class="concert_card">
-                                <div class="concert_card_title">21/09/2125</div>
-                                <div class="concert_card_content_wrapper">
-                                    <div class="concert_card_content">
-                                        <p class="concert_card_content_club"> The Cupboard Under the Stairs</p> 
-                                        <p class="concert_card_content_address">Number 4 Privet Drive, Little Whinging, Surrey, England</p>
-                                        <p class="concert_card_content_time">19:00</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="concert_card_buy-ticket">Buy ticket</a>
-                            </div>
-                        </div> 
-                    </div>
-                </div>-->
+                
+
             </div>
            
         	<div class="footer">
@@ -177,22 +109,22 @@
         				    <i class="fa fa-github-alt fa-2x social_logo" aria-hidden="true"></i>
         			     </a>
 					    <a href="https://play.google.com/store/music/artist/%D0%AD%D1%85%D0%BE11?id=Acszgszcotddrgx7e35gzz76dvy" class="social_logo-link">
-						    <img src="google_play.png" alt="" class="social_logo google_play">
+						    <img src="social_icon/google_play.png" alt="" class="social_logo google_play">
         			    </a>
 					    <a href="https://music.yandex.ru/artist/2624253" class="social_logo-link">
-        				    <img src="ymusic-logo-cut.png" alt="" class="social_logo yandex_music">
+        				    <img src="social_icon/ymusic-logo-cut.png" alt="" class="social_logo yandex_music">
         			    </a>
 					    <a href="https://vk.com/exo11" class="social_logo-link">
-        				    <img src="vk-logo.png" alt="" class="social_logo vk">
+        				    <img src="social_icon/vk-logo.png" alt="" class="social_logo vk">
         			    </a>
 					    <a href="https://www.last.fm/ru/music/%D0%AD%D1%85%D0%BE11" class="social_logo-link">
-        				    <img src="last-fm.png" alt="" class="social_logo last_fm">
+        				    <img src="social_icon/last-fm.png" alt="" class="social_logo last_fm">
         			    </a>
 					    <a href="#" class="social_logo-link">
-        				    <img src="twiter-logo.png" alt="" class="social_logo twitter">
+        				    <img src="social_icon/twiter-logo.png" alt="" class="social_logo twitter">
         			    </a>
 					    <a href="https://www.apple.com/ru/itunes/" class="social_logo-link">
-        				    <img src="itunes.png" alt="" class="social_logo itunes">
+        				    <img src="social_icon/itunes.png" alt="" class="social_logo itunes">
         			    </a>
 					</div>
         		</div>
@@ -216,4 +148,5 @@
     <script src="js/index.js"></script>
     <script src="js/sparks.js"></script>
     <script src="js/createNode.js"></script>
+    <script src="js/chat.js"></script>
 </html>

@@ -1,5 +1,8 @@
-# exo11.com
+# Exo11.com
 Сайт для музыкального проекта.
+
+# [exo11.com](https://exo11.github.io/exo11.com/)
+
 # Схема интерфейса
 ![схема](readme_img/Main_inter_22.jpg)
 # Music (1)

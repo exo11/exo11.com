@@ -1,3 +1,5 @@
+'use strict';
+
 getFire();
 
 function getFire() {

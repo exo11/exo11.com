@@ -12,23 +12,26 @@ const brightnessRange = document.getElementById('brightness_range'),
   playerAlbumTitle = document.getElementsByClassName('player_album-title')[0],
   musicNav = document.getElementsByClassName('music_nav')[0],
   navMenu = document.getElementsByClassName('nav_menu')[0],
+  playerCoating = document.getElementsByClassName('player_container_coating')[0],
   musicContainer = document.getElementsByClassName('music_container')[0],
   root = document.getElementById('root'),
   playerContent = document.getElementsByClassName('player_content')[0];
 
-let stopEclipse = false;
-let playListSmoothChange = false;
-let dinamicVisible = true;
-let albumOpacityCount = 0;
+let stopEclipse = false,
+ playListSmoothChange = false,
+ dinamicVisible = true,
+ albumOpacityCount = 0,
+ currentAlbum;
 
-  
 Array.from(albumWrapper).forEach(album => album.addEventListener('click', addPlayList));
+playerNav.addEventListener('click',(evt) => {playerNavHandler(evt,currentAlbum)});
+playerContent.addEventListener('timeupdate', (evt) => {timeupdateHandler(evt, currentAlbum)});
 brightnessRange.addEventListener('input', brightnessRangeHandler);
 navMenu.addEventListener('click', navMenuHandler);
 
-
 function addPlayList(evt) {
 	playerWrapper.classList.add('player_wrapper-visible');
+  playerCoating.classList.add('player_container_coating_none');
 	Array.from(albumWrapper).forEach(album => {
     album.classList.remove('album_wrapper_selected');
     if(album.classList.contains('move_left')) {
@@ -37,7 +40,6 @@ function addPlayList(evt) {
       album.classList.add('move_right_go')
     }
   });
-	
   addPlay();
   playTime.textContent = '00:00';
   evt.target.classList.add('album_wrapper_selected');
@@ -51,34 +53,33 @@ function addPlayList(evt) {
       playName.textContent = album.tracks[0].title;
       playerContent.src = album.tracks[0].src;
       album.index = 0;
-      playerNav.addEventListener('click', (evt) => {playerNavHandler(evt,album)});
+      currentAlbum = album;
     }
   });
 }
 
-
 function playListVisible(evt) {
   playList.classList.add('play_list_visible');
   if (playListSmoothChange) {
-    playListCoating.classList.remove('play_list-coating_visible');
-    playListCoating.style.backgroundImage = playList.style.backgroundImage;
-    setTimeout(() => {
-      playListCoating.classList.add('play_list-coating_visible');
+    if (navigator.userAgent.search(/Firefox/) > 0) {
+      playListCoating.style.backgroundImage = playList.style.backgroundImage;
       playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
-    }, 300);
+      playListCoating.classList.add('play_list-coating_invisible');
+      setTimeout(() => {
+        playListCoating.classList.remove('play_list-coating_invisible');
+        playListCoating.style.backgroundImage ='none';
+      }, 1000);
+    } else {
+      playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
+    }
   } else {
     playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
     playListSmoothChange = true;
   }
 }
 
-
 function playerNavHandler(evt,album) {
-  playerContent.addEventListener('timeupdate', () => {
-    playTime.textContent = new Date(playerContent.currentTime * 1000)
-      .toUTCString().split(/ /)[4].substr(3);
-  });
-  
+  console.log(album);
   if (evt.target.classList.contains('fa-play') && evt.target.classList.contains('play-pause_action')) {
     playerContent.play();
     addPause();
@@ -86,20 +87,32 @@ function playerNavHandler(evt,album) {
     playerContent.pause();
     addPlay();
   } else if (evt.target.classList.contains('fa-fast-forward')) {
+    changeTracks(album);
+  } else if (evt.target.classList.contains('fa-fast-backward')) {
+    changeTracks(album, false);
+  }
+}
+
+function timeupdateHandler(evt, album) {
+  playTime.textContent = new Date(playerContent.currentTime * 1000)
+    .toUTCString().split(/ /)[4].substr(3);
+  if (playerContent.duration === playerContent.currentTime) {
+    changeTracks(album);
+  }
+}
+
+function changeTracks(album, isForward = true) {
+  if (isForward) {
     album.index++;
     album.index = album.index > album.tracks.length - 1  ? 0 : album.index;
-    playerContent.src = album.tracks[album.index].src;
-    playName.textContent = album.tracks[album.index].title;
-    playerContent.play();
-    addPause();
-  } else if (evt.target.classList.contains('fa-fast-backward')) {
+  } else {
     album.index--;
     album.index = album.index < 0 ? album.tracks.length - 1 : album.index;
-    playerContent.src = album.tracks[album.index].src;
-    playName.textContent = album.tracks[album.index].title;
-    playerContent.play();
-    addPause();
   }
+  playerContent.src = album.tracks[album.index].src;
+  playName.textContent = album.tracks[album.index].title;
+  playerContent.play();
+  addPause();
 }
 
 function addPause() {
@@ -152,16 +165,20 @@ function navMenuHandler(evt) {
       Array.from(albumWrapper).forEach(album => {
         album.classList.remove('move_left_go', 'move_right_go');
       });
+      
       musicContainer.classList.add('music_container_transparent');
       setTimeout(() =>  musicContainer.style.display = 'none', 1000);
       playerWrapper.classList.remove('player_wrapper-visible');
-      
+      playerCoating.classList.remove('player_container_coating_none');
       if (evt.target.classList.contains('feedback_nav')) {
         dynamicVisible(createFeedbackNode); 
       } else if (evt.target.classList.contains('contacts_nav')) {
         dynamicVisible(createContactsNode); 
       } else if (evt.target.classList.contains('concerts_nav')) {
         dynamicVisible(createConcertsNode);  
+      } else if (evt.target.classList.contains('chat_nav')) {
+        dynamicVisible(createChatNode);
+        setTimeout(() => chats(document.getElementsByClassName('chat')[0]), 2000);
       }
       dinamicVisible = false;
     } else {
@@ -172,6 +189,7 @@ function navMenuHandler(evt) {
 
 function musicNavHandler(evt) {
   playerWrapper.classList.toggle('player_wrapper-visible');
+  playerCoating.classList.toggle('player_container_coating_none');
   dinamicVisible = true;
   if (!playListSmoothChange) {
     playList.style.backgroundImage = 'url(album_cover/brightness.jpg)';
@@ -250,16 +268,19 @@ snowfallObj = {
 },
 fidelityObj = {
   id: 'fidelity',
-  title: 'Coming soon',
+  title: 'Coming soon 2018',
   tracks: [
-    {title: 'Верность', src: 'верность'}
+    {title: 'Верность  promo', src: 'audio/fidelity/Fidelity_promo.wav'}
   ]
 },
-nameObj = {
+instrumentalObj = {
   id: 'planet',
-  title: 'Coming soon',
+  title: 'Instrumentals',
   tracks: [
-    {title: 'Имя 2018', src: 'имя'}
+    {title: 'Teach', src: 'audio/instrumentals/Teach_instrumental.wav'},
+    {title: 'Black butterfly', src: 'audio/instrumentals/Black_Butterfly_instrumental.wav'},
+    {title: 'My', src: 'audio/instrumentals/My_instrumental.mp3'},
+    {title: 'Memory', src: 'audio/instrumentals/Pamyat_instrumental.mp3'}
   ]
 },
 myObj = {
@@ -284,7 +305,7 @@ const albumArr = [
  autumnAstronomyObj,
  snowfallObj,
  fidelityObj,
- nameObj,
+ instrumentalObj,
  myObj,
  fallenBirdsObj
 ];
