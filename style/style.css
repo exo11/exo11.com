@@ -941,7 +941,11 @@ Chat Title
   width: 95px;
   text-align: center;
   margin-top: 8px;
-  margin-left: 190px;  
+  margin-left: 190px; 
+}
+
+.name-input_red {
+  color: red;
 }
 
 .name-submit {
@@ -959,6 +963,10 @@ Chat Title
   transition: background .2s ease;
   cursor: pointer;
   opacity: 0.7;
+}
+
+.name-submit_red {
+  background-color: red;
 }
 
 .chat-title_name {

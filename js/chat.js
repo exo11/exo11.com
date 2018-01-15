@@ -1,6 +1,7 @@
 'use strict';
 
 function chats(container) {
+  
   const connection = new WebSocket('wss://neto-api.herokuapp.com/chat'),
     chatStatus = container.getElementsByClassName('chat-status')[0],
     messageSubmit = container.getElementsByClassName('message-submit')[0],
@@ -19,11 +20,10 @@ function chats(container) {
     nameBox = container.getElementsByClassName('name-box')[0],
     messageInput = container.getElementsByClassName('message-input')[0];
 
-
   connection.addEventListener('open', () => {
     chatStatus.textContent = chatStatus.dataset.online;
     messageSubmit.removeAttribute('disabled');
-    messageStatusText.textContent = 'Администратор появился в сети';
+    messageStatusText.textContent = messageStatusText.dataset.online;
     messagesContent.appendChild(messageStatus.cloneNode(true));
   });
 
@@ -36,7 +36,7 @@ function chats(container) {
   connection.addEventListener('close', evt => {
     chatStatus.textContent = chatStatus.dataset.offline;
     messageSubmit.setAttribute('disabled', 'disabled');
-    messageStatusText.textContent = 'Администратор не в сети';
+    messageStatusText.textContent = messageStatusText.dataset.offline;
     messagesContent.appendChild(messageStatus.cloneNode(true));
   });
 
@@ -44,7 +44,7 @@ function chats(container) {
 
   nameInput.addEventListener('keydown', evt => {
     if (evt.code === 'Enter') {
-      addUsername;
+      addUsername();
     }
   });
 
@@ -60,7 +60,7 @@ function chats(container) {
 
   messageInput.addEventListener('keydown', evt => {
     if (evt.code === 'Enter') {
-      addMessage;
+      addMessage();
     }
   });
 
@@ -72,8 +72,8 @@ function chats(container) {
       messagesContent.appendChild(messagePersonal.cloneNode(true));
       messageInput.value = '';
     } else {
-      nameInput.style.color = 'red';
-      nameSubmit.style.backgroundColor = 'red';
+      nameInput.classList.add('name-input_red');
+      nameSubmit.classList.add('name-submit_red');
     }
   }
 

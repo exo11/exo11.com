@@ -129,7 +129,7 @@ function createChatNode() {
             e('div', {'class': 'timestamp'}, '')
           ),
           e('div', {'class': 'message message-status'},
-            e('span', {'class': 'message-text'}, 'Администратор не в сети')
+            e('span', {'class': 'message-text', 'data-offline': 'Администратор не в сети', 'data-online': 'Администратор появился в сети'}, '')
           )
         ),
         e('div', {'class': 'messages-content'})
