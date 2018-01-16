@@ -944,7 +944,7 @@ Chat Title
   margin-left: 190px; 
 }
 
-.name-input_red {
+.name-input_change-color {
   color: red;
 }
 
@@ -965,7 +965,7 @@ Chat Title
   opacity: 0.7;
 }
 
-.name-submit_red {
+.name-submit_change-color {
   background-color: red;
 }
 

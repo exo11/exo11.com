@@ -28,6 +28,7 @@ playerNav.addEventListener('click',(evt) => {playerNavHandler(evt,currentAlbum)}
 playerContent.addEventListener('timeupdate', (evt) => {timeupdateHandler(evt, currentAlbum)});
 brightnessRange.addEventListener('input', brightnessRangeHandler);
 navMenu.addEventListener('click', navMenuHandler);
+window.addEventListener('load', startAnimate);
 
 function addPlayList(evt) {
 	playerWrapper.classList.add('player_wrapper-visible');
@@ -202,7 +203,6 @@ function dynamicVisible(func) {
   });
 }
 
-addEclipse();
 
 function addEclipse() { 
   const interval = setInterval(eclipse, 30);
@@ -219,6 +219,11 @@ function addEclipse() {
       clearInterval(interval);
     }
   }
+}
+
+function startAnimate() {
+  getFire();
+  addEclipse();
 }
 
 /* --------------------- audio objects--------------------*/

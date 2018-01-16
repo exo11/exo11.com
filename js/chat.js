@@ -18,6 +18,7 @@ function chats(container) {
     username = container.getElementsByClassName('username')[0],
     nameSubmit = container.getElementsByClassName('name-submit')[0],
     nameBox = container.getElementsByClassName('name-box')[0],
+    messageBox = container.getElementsByClassName('message-box')[0],
     messageInput = container.getElementsByClassName('message-input')[0];
 
   connection.addEventListener('open', () => {
@@ -40,14 +41,10 @@ function chats(container) {
     messagesContent.appendChild(messageStatus.cloneNode(true));
   });
 
-  nameSubmit.addEventListener('click', addUsername);
+  
 
-  nameInput.addEventListener('keydown', evt => {
-    if (evt.code === 'Enter') {
-      addUsername();
-    }
-  });
-
+  nameBox.addEventListener('submit', addUsername);
+  
   function addUsername(evt) {
     if (nameInput.value !== '') {
       username.textContent = nameInput.value;
@@ -56,13 +53,7 @@ function chats(container) {
     }
   }
 
-  messageSubmit.addEventListener('click', addMessage);
-
-  messageInput.addEventListener('keydown', evt => {
-    if (evt.code === 'Enter') {
-      addMessage();
-    }
-  });
+  messageBox.addEventListener('submit', addMessage);
 
   function addMessage(evt) {
     if (messageInput.value !== '' && nameBox.style.display === 'none') {
@@ -72,8 +63,8 @@ function chats(container) {
       messagesContent.appendChild(messagePersonal.cloneNode(true));
       messageInput.value = '';
     } else {
-      nameInput.classList.add('name-input_red');
-      nameSubmit.classList.add('name-submit_red');
+      nameInput.classList.add('name-input_change-color');
+      nameSubmit.classList.add('name-submit_change-color');
     }
   }
 
