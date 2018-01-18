@@ -352,3 +352,27 @@ const albumArr = [
 ];
 
 
+function loadData(url) {
+  const functionName = randName();
+  return new Promise((done, fail) => {
+    window[functionName] = done;
+    const script = document.createElement('script');
+    script.src = `${url}?jsonp=${functionName}`;
+    document.body.appendChild(script);
+  });
+}
+
+function randName() {
+  return 'callback' + Math.random().toString().slice(2, 6);
+}
+console.log('1')
+loadData('https://github.com/exo11/exo11.com/tree/master/concert_JSON')
+ .then(res => console.log(res))
+ 
+console.log('2')
+fetch('https://github.com/exo11/exo11.com/tree/master/concert_JSON')
+  .then(res => console.log(res))
+
+console.log('3')
+fetch('https://github.com/exo11/exo11.com/blob/master/concert_JSON/concert.json')
+  .then(res => console.log(res))  
