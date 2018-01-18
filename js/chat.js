@@ -3,23 +3,23 @@
 function chats(container) {
   
   const connection = new WebSocket('wss://neto-api.herokuapp.com/chat'),
-    chatStatus = container.getElementsByClassName('chat-status')[0],
-    messageSubmit = container.getElementsByClassName('message-submit')[0],
-    messageStatus = container.getElementsByClassName('message-status')[0],
-    messageStatusText = messageStatus.getElementsByClassName('message-text')[0],
-    messagesContent = container.getElementsByClassName('messages-content')[0],
+    chatStatus = container.querySelector('.chat-status'),
+    messageSubmit = container.querySelector('.message-submit'),
+    messageStatus = container.querySelector('.message-status'),
+    messageStatusText = messageStatus.querySelector('.message-text'),
+    messagesContent = container.querySelector('.messages-content'),
     message = container.getElementsByClassName('message')[1],
-    messageText = message.getElementsByClassName('message-text')[0],
-    messageTime = message.getElementsByClassName('timestamp')[0],
-    messagePersonal = container.getElementsByClassName('message-personal')[0],
-    messagePersonalText = messagePersonal.getElementsByClassName('message-text')[0],
-    messagePersonalTime = messagePersonal.getElementsByClassName('timestamp')[0],
-    nameInput = container.getElementsByClassName('name-input')[0],
-    username = container.getElementsByClassName('username')[0],
-    nameSubmit = container.getElementsByClassName('name-submit')[0],
-    nameBox = container.getElementsByClassName('name-box')[0],
-    messageBox = container.getElementsByClassName('message-box')[0],
-    messageInput = container.getElementsByClassName('message-input')[0];
+    messageText = message.querySelector('.message-text'),
+    messageTime = message.querySelector('.timestamp'),
+    messagePersonal = container.querySelector('.message-personal'),
+    messagePersonalText = messagePersonal.querySelector('.message-text'),
+    messagePersonalTime = messagePersonal.querySelector('.timestamp'),
+    nameInput = container.querySelector('.name-input'),
+    username = container.querySelector('.username'),
+    nameSubmit = container.querySelector('.name-submit'),
+    nameBox = container.querySelector('.name-box'),
+    messageBox = container.querySelector('.message-box'),
+    messageInput = container.querySelector('.message-input');
 
   connection.addEventListener('open', () => {
     chatStatus.textContent = chatStatus.dataset.online;
@@ -41,10 +41,6 @@ function chats(container) {
     messagesContent.appendChild(messageStatus.cloneNode(true));
   });
 
-  
-
-  nameBox.addEventListener('submit', addUsername);
-  
   function addUsername(evt) {
     if (nameInput.value !== '') {
       username.textContent = nameInput.value;
@@ -53,8 +49,8 @@ function chats(container) {
     }
   }
 
-  messageBox.addEventListener('submit', addMessage);
-
+  nameBox.addEventListener('submit', addUsername);
+  
   function addMessage(evt) {
     if (messageInput.value !== '' && nameBox.style.display === 'none') {
       connection.send(messageInput.value);
@@ -67,6 +63,8 @@ function chats(container) {
       nameSubmit.classList.add('name-submit_change-color');
     }
   }
+
+  messageBox.addEventListener('submit', addMessage);
 
   window.addEventListener('beforeunload', () => {
     connection.close();

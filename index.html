@@ -22,7 +22,6 @@
 			</div>
 			<div class="nav_menu">
 				<a class="nav_menu_link chat_nav" href="#">Chat</a>
-                <!--<a class="nav_menu_link" href="#">Texts</a>-->
                 <a class="nav_menu_link concerts_nav" href="#">Concerts</a>
 				<a class="nav_menu_link contacts_nav" href="#">Contacts</a>
 				<a class="nav_menu_link feedback_nav" href="#">Feedback</a>
@@ -95,7 +94,75 @@
                         <div id="fallen_birds" class="album_wrapper move_right"></div>
                     </div>
                 </div>
-                
+                <div class="feedback_container" data-id="feedback_nav">
+                    <div class="feedback_wrapper">
+                        <h2 class="feedback_main_title">Get in touch</h2>
+                        <form action="" class="feedback_form">
+                            <div class="feedback_input_wrapper">
+                                <div class="feedback_input_container">
+                                    <h3 class="feedback_input_title" >Name:</h3>
+                                    <input type="text" class="feedback_input" >
+                                    <h3 class="feedback_input_title" >Email:</h3>
+                                    <input type="text" class="feedback_input" >
+                                </div>
+                                <div class="feedback_img_wrapper">
+                                    <i class="fa fa-connectdevelop fa-5x" aria-hidden="true"></i>
+                                </div>    
+                            </div>
+                            <h3 class="feedback_textarea_title">Message</h3>
+                            <textarea name="" id="" cols="30" rows="10" class="feedback_textarea"></textarea>
+                            <button class="feedback_button">Send</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="contacts_container" data-id="contacts_nav">
+                    <div class="contact_link_wrapper">
+                      <a href="https://exo11@icloud.com" class="contact_link">exo11@icloud.com</a>
+                      <a href="https://vk.com/prosvet_music" class="contact_link">vk.com/prosvet_music</a>
+                      <a href="https://t.me/exo11" class="contact_link">t.me/exo11</a>
+                      <a href="https://github.com/exo11" class="contact_link">github.com/exo11</a>
+                    </div>
+                </div>
+                <div class="chat_container" data-id="chat_nav">
+                    <div class="chat">
+                        <div class="chat-title">
+                            <figure class="avatar">
+                                <img src="exo11_7_blue.png">
+                            </figure>
+                            <h2 class="chat-status" data-online="в сети" data-offline="не в сети">не в сети</h2>
+                            <form class="name-box" action="" method="">
+                              <input type="text" class="name-input" placeholder="Enter Your Name">
+                              <button type="submit" class="name-submit">Ok</button>
+                            </form>
+                            <h1 class="admin_name chat-title_name">Exo11.com</h1>
+                            <h1 class="username chat-title_name">Username</h1>
+                        </div>
+                        <div class="messages">
+                            <div class="messages-templates">
+                                <div class="message loading"></div>
+                                <div class="message">
+                                    <figure class="avatar">
+                                        <img src="exo11_7_blue.png">
+                                    </figure>
+                                    <span class="message-text"></span>
+                                    <div class="timestamp"></div>
+                                </div>
+                                <div class="message message-personal">
+                                    <span class="message-text"></span>
+                                    <div class="timestamp"></div>
+                                </div>
+                                <div class="message message-status">
+                                    <span class="message-text" data-offline="Администратор не в сети"" data-online="Администратор появился в сети">Администратор не в сети</span>
+                                </div>
+                            </div>
+                            <div class="messages-content"></div>
+                        </div>
+                        <form class="message-box" action="/404/" method="POST">
+                            <input type="text" class="message-input" placeholder="Enter your message …">
+                            <button disabled="true" type="submit" class="message-submit">Send</button>
+                        </form>
+                    </div>
+                </div>
 
             </div>
            

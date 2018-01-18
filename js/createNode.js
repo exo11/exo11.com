@@ -21,8 +21,36 @@ function createElement(node) {
   }
 }
 
+function createConcertsNode() {
+  const concertsNode = e('div',{'class': 'dynamic_container'},
+    e(
+      'div',{'class': 'concert_card_wrapper'},
+      e('h2', {'class': 'concert_card_main-title'}, 'Upcoming shows'),
+      e('div', {'class': 'concert_card_container'},''),
+    )
+  );  
+  
+  const concertsCards = concertArr.reduce((fragment,concert) => {
+    let concertCard = e('div', {'class': 'concert_card'},
+      e('div',{'class': 'concert_card_title'}, concert.data),
+      e('div', {'class': 'concert_card_content_wrapper'},
+        e('div', {'class': 'concert_card_content'},
+          e('p', {'class': 'concert_card_content_club'}, concert.club),
+          e('p', {'class': 'concert_card_content_address'}, concert.address),
+          e('p', {'class': 'concert_card_content_time'}, concert.time)
+        )
+      ),
+      e('a', {'class': 'concert_card_buy-ticket', 'href': concert.clubLink}, 'Buy ticket')
+    );
+    fragment.appendChild(createElement(concertCard));
+    return fragment;
+  },document.createDocumentFragment());
+  
+  document.getElementById('root').appendChild(createElement(concertsNode));
+  document.querySelector('.concert_card_container').appendChild(concertsCards);
+}
 
-function createFeedbackNode() {
+/*function createFeedbackNode() {
   const feedbackNode = e('div',{'class': 'dynamic_container'},
   e('div',{'class': 'feedback_wrapper'},
     e('h2',{'class':'feedback_main_title'},'Get in touch'),
@@ -69,35 +97,7 @@ function createContactsNode() {
 }
 
 
-function createConcertsNode() {
-  const concertsNode = e('div',{'class': 'dynamic_container'},
-    e(
-      'div',{'class': 'concert_card_wrapper'},
-      e('h2', {'class': 'concert_card_main-title'}, 'Upcoming shows'),
-      e('div', {'class': 'concert_card_container'},''),
-    )
-  );  
-  
-  const concertsCards = concertArr.reduce((fragment,concert) => {
-    let concertCard = e('div', {'class': 'concert_card'},
-      e('div',{'class': 'concert_card_title'}, concert.data),
-      e('div', {'class': 'concert_card_content_wrapper'},
-        e('div', {'class': 'concert_card_content'},
-          e('p', {'class': 'concert_card_content_club'}, concert.club),
-          e('p', {'class': 'concert_card_content_address'}, concert.address),
-          e('p', {'class': 'concert_card_content_time'}, concert.time)
-        )
-      ),
-      e('a', {'class': 'concert_card_buy-ticket', 'href': concert.clubLink}, 'Buy ticket')
-    );
-    fragment.appendChild(createElement(concertCard));
-    return fragment;
-  },document.createDocumentFragment());
-  
-  document.getElementById('root').appendChild(createElement(concertsNode));
-  document.getElementsByClassName('concert_card_container')[0]
-    .appendChild(concertsCards);
-}
+
 
 function createChatNode() {
   const chatNode = e('div', {'class': 'dynamic_container'},
@@ -142,7 +142,7 @@ function createChatNode() {
   );
   document.getElementById('root').appendChild(createElement(chatNode));
 }
-
+*/
 /*--------------------------- concert objects -----------------------------*/
 
 const concertArr = [

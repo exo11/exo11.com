@@ -665,13 +665,22 @@ input[type=range]:focus::-ms-fill-upper {
   width: 25px;
 }
 
-.dynamic_container {
+.dynamic_container,  {
   width: 100%;
   height: 100%;
   display: flex;
-  opacity: 0;
+  opacity: 1;
   transition: 2s;
 }
+
+.feedback_container, .contacts_container, .chat_container {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 2s;
+  display: none;
+}
+
 
 .dynamic_visible {
   opacity: 0.8;

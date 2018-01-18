@@ -1,12 +1,10 @@
 'use strict';
 
-
-
 function getFire() {
 
   const canvas = document.getElementById('spark-canvas'),
     ctx = canvas.getContext('2d'),
-    wrapperStyle = getComputedStyle(document.getElementsByClassName('main_wrapper')[0]),
+    wrapperStyle = getComputedStyle(document.querySelector('.main_wrapper')),
     width = wrapperStyle.width,
     height = wrapperStyle.height,
     sparks = [],
@@ -15,9 +13,6 @@ function getFire() {
 
   let animateSpark = true;
 
-  window.addEventListener('resize', resize);
-  sparksBtn.addEventListener('click' , sparksBtnHandler);
-  
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
 
@@ -67,8 +62,6 @@ function getFire() {
 
   }
  
-  addSparks();
-
   function addSparks() {
     canvasWrapper.style.height = height;
     for (let i = 0; i < canvas.width * 0.5; i++) {
@@ -77,12 +70,16 @@ function getFire() {
     animate();
   }
 
+  addSparks();
+
   
   function resize() {
     canvasWrapper.style.height = height;
-    canvas.setAttribute('width', getComputedStyle(document.getElementsByClassName('main_wrapper')[0]).width);
-    canvas.setAttribute('height', getComputedStyle(document.getElementsByClassName('main_wrapper')[0]).height);
+    canvas.setAttribute('width', getComputedStyle(document.querySelector('.main_wrapper')).width);
+    canvas.setAttribute('height', getComputedStyle(document.querySelector('.main_wrapper')).height);
   }
+
+  window.addEventListener('resize', resize);
 
   
   function sparksBtnHandler() {
@@ -97,6 +94,7 @@ function getFire() {
     }
   }
 
+  sparksBtn.addEventListener('click' , sparksBtnHandler);
 
   function animate() {
     if(animateSpark) {

@@ -2,20 +2,20 @@
 
 const brightnessRange = document.getElementById('brightness_range'),
   backgroundImg = document.getElementById('backgroundImg'),
-  albumWrapper = document.getElementsByClassName('album_wrapper'),
-  playList = document.getElementsByClassName('play_list')[0],
-  playListCoating = document.getElementsByClassName('play_list-coating')[0],
-  playerWrapper = document.getElementsByClassName('player_wrapper')[0],
-  playerNav = document.getElementsByClassName('player')[0],
-  playTime = document.getElementsByClassName('play_time')[0],
-  playName = document.getElementsByClassName('play_name')[0],
-  playerAlbumTitle = document.getElementsByClassName('player_album-title')[0],
-  musicNav = document.getElementsByClassName('music_nav')[0],
-  navMenu = document.getElementsByClassName('nav_menu')[0],
-  playerCoating = document.getElementsByClassName('player_container_coating')[0],
-  musicContainer = document.getElementsByClassName('music_container')[0],
   root = document.getElementById('root'),
-  playerContent = document.getElementsByClassName('player_content')[0];
+  albumWrapper = document.getElementsByClassName('album_wrapper'),
+  playList = document.querySelector('.play_list'),
+  playListCoating = document.querySelector('.play_list-coating'),
+  playerWrapper = document.querySelector('.player_wrapper'),
+  playerNav = document.querySelector('.player'),
+  playTime = document.querySelector('.play_time'),
+  playName = document.querySelector('.play_name'),
+  playerAlbumTitle = document.querySelector('.player_album-title'),
+  musicNav = document.querySelector('.music_nav'),
+  navMenu = document.querySelector('.nav_menu'),
+  playerCoating = document.querySelector('.player_container_coating'),
+  musicContainer = document.querySelector('.music_container'),
+  playerContent = document.querySelector('.player_content');
 
 let stopEclipse = false,
  playListSmoothChange = false,
@@ -23,12 +23,49 @@ let stopEclipse = false,
  albumOpacityCount = 0,
  currentAlbum;
 
-Array.from(albumWrapper).forEach(album => album.addEventListener('click', addPlayList));
-playerNav.addEventListener('click',(evt) => {playerNavHandler(evt,currentAlbum)});
-playerContent.addEventListener('timeupdate', (evt) => {timeupdateHandler(evt, currentAlbum)});
-brightnessRange.addEventListener('input', brightnessRangeHandler);
-navMenu.addEventListener('click', navMenuHandler);
-window.addEventListener('load', startAnimate);
+function addPause() {
+  document.querySelector('.fa-play').classList.remove('play-pause_action');
+  document.querySelector('.fa-pause').classList.add('play-pause_action')
+}
+
+function addPlay() {
+  document.querySelector('.fa-pause').classList.remove('play-pause_action');
+  document.querySelector('.fa-play').classList.add('play-pause_action');
+}
+
+function playListVisible(evt) {
+  playList.classList.add('play_list_visible');
+  if (playListSmoothChange) {
+    if (navigator.userAgent.search(/Firefox/) > 0) {
+      playListCoating.style.backgroundImage = playList.style.backgroundImage;
+      playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
+      playListCoating.classList.add('play_list-coating_invisible');
+      setTimeout(() => {
+        playListCoating.classList.remove('play_list-coating_invisible');
+        playListCoating.style.backgroundImage ='none';
+      }, 1000);
+    } else {
+      playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
+    }
+  } else {
+    playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
+    playListSmoothChange = true;
+  }
+}
+
+function changeTracks(album, isForward = true) {
+  if (isForward) {
+    album.index++;
+    album.index = album.index > album.tracks.length - 1  ? 0 : album.index;
+  } else {
+    album.index--;
+    album.index = album.index < 0 ? album.tracks.length - 1 : album.index;
+  }
+  playerContent.src = album.tracks[album.index].src;
+  playName.textContent = album.tracks[album.index].title;
+  playerContent.play();
+  addPause();
+}
 
 function addPlayList(evt) {
 	playerWrapper.classList.add('player_wrapper-visible');
@@ -59,25 +96,7 @@ function addPlayList(evt) {
   });
 }
 
-function playListVisible(evt) {
-  playList.classList.add('play_list_visible');
-  if (playListSmoothChange) {
-    if (navigator.userAgent.search(/Firefox/) > 0) {
-      playListCoating.style.backgroundImage = playList.style.backgroundImage;
-      playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
-      playListCoating.classList.add('play_list-coating_invisible');
-      setTimeout(() => {
-        playListCoating.classList.remove('play_list-coating_invisible');
-        playListCoating.style.backgroundImage ='none';
-      }, 1000);
-    } else {
-      playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
-    }
-  } else {
-    playList.style.backgroundImage = getComputedStyle(evt.target).backgroundImage;
-    playListSmoothChange = true;
-  }
-}
+
 
 function playerNavHandler(evt,album) {
   if (evt.target.classList.contains('fa-play') && evt.target.classList.contains('play-pause_action')) {
@@ -101,67 +120,11 @@ function timeupdateHandler(evt, album) {
   }
 }
 
-function changeTracks(album, isForward = true) {
-  if (isForward) {
-    album.index++;
-    album.index = album.index > album.tracks.length - 1  ? 0 : album.index;
-  } else {
-    album.index--;
-    album.index = album.index < 0 ? album.tracks.length - 1 : album.index;
-  }
-  playerContent.src = album.tracks[album.index].src;
-  playName.textContent = album.tracks[album.index].title;
-  playerContent.play();
-  addPause();
-}
-
-function addPause() {
-  document.getElementsByClassName('fa-play')[0].classList.remove('play-pause_action');
-  document.getElementsByClassName('fa-pause')[0].classList.add('play-pause_action')
-}
-
-function addPlay() {
-  document.getElementsByClassName('fa-pause')[0].classList.remove('play-pause_action');
-  document.getElementsByClassName('fa-play')[0].classList.add('play-pause_action');
-}
-
 brightnessRange.value = 400;
 
 function brightnessRangeHandler(evt) {
   stopEclipse = true;
   backgroundImg.style.opacity = evt.target.value / 1000;
-}
-
-function navMenuHandler(evt) {
-  if (evt.target.classList.contains('nav_menu_link')) {
-    Array.from(navMenu.children).forEach(link => link.classList.remove('nav_link_select'));
-    evt.target.classList.add('nav_link_select');
-    if (document.getElementsByClassName('dynamic_container')[0]) {
-       root.removeChild(document.getElementsByClassName('dynamic_container')[0]);
-    }
-    if (!(evt.target.classList.contains('music_nav'))) {
-      Array.from(albumWrapper).forEach(album => {
-        album.classList.remove('move_left_go', 'move_right_go');
-      });
-      musicContainer.classList.add('music_container_transparent');
-      setTimeout(() =>  musicContainer.style.display = 'none', 1000);
-      playerWrapper.classList.remove('player_wrapper-visible');
-      playerCoating.classList.remove('player_container_coating_none');
-      if (evt.target.classList.contains('feedback_nav')) {
-        dynamicVisible(createFeedbackNode); 
-      } else if (evt.target.classList.contains('contacts_nav')) {
-        dynamicVisible(createContactsNode); 
-      } else if (evt.target.classList.contains('concerts_nav')) {
-        dynamicVisible(createConcertsNode);  
-      } else if (evt.target.classList.contains('chat_nav')) {
-        dynamicVisible(createChatNode);
-        setTimeout(() => chats(document.getElementsByClassName('chat')[0]), 2000);
-      }
-      dinamicVisible = false;
-    } else {
-      musicNavHandler(evt);
-    }
-  }  
 }
 
 function musicNavHandler(evt) {
@@ -197,12 +160,84 @@ function dynamicVisible(func) {
   })
   .then(result => {
     setTimeout(() => {
-      document.getElementsByClassName('dynamic_container')[0]
+      document.querySelector('.dynamic_container')
         .classList.add('dynamic_visible')
     }, 100);
   });
 }
 
+/*function navMenuHandler(evt) {
+  if (evt.target.classList.contains('nav_menu_link')) {
+    Array.from(navMenu.children).forEach(link => link.classList.remove('nav_link_select'));
+    evt.target.classList.add('nav_link_select');
+    if (document.querySelector('.dynamic_container')) {
+       root.removeChild(document.querySelector('.dynamic_container'));
+    }
+    if (!(evt.target.classList.contains('music_nav'))) {
+      Array.from(albumWrapper).forEach(album => {
+        album.classList.remove('move_left_go', 'move_right_go');
+      });
+      musicContainer.classList.add('music_container_transparent');
+      setTimeout(() =>  musicContainer.style.display = 'none', 1000);
+      playerWrapper.classList.remove('player_wrapper-visible');
+      playerCoating.classList.remove('player_container_coating_none');
+      if (evt.target.classList.contains('feedback_nav')) {
+        dynamicVisible(createFeedbackNode); 
+      } else if (evt.target.classList.contains('contacts_nav')) {
+        dynamicVisible(createContactsNode); 
+      } else if (evt.target.classList.contains('concerts_nav')) {
+        dynamicVisible(createConcertsNode);  
+      } else if (evt.target.classList.contains('chat_nav')) {
+        dynamicVisible(createChatNode);
+        setTimeout(() => chats(document.querySelector('.chat')), 2000);
+      }
+      dinamicVisible = false;
+    } else {
+      musicNavHandler(evt);
+    }
+  }  
+}*/
+
+function navMenuHandler(evt) {
+  if (evt.target.classList.contains('nav_menu_link')) {
+    Array.from(navMenu.children).forEach(link => link.classList.remove('nav_link_select'));
+    evt.target.classList.add('nav_link_select');
+    if (document.querySelector('.dynamic_container')) {
+       root.removeChild(document.querySelector('.dynamic_container'));
+    }
+    if (!(evt.target.classList.contains('music_nav'))) {
+      Array.from(albumWrapper).forEach(album => {
+        album.classList.remove('move_left_go', 'move_right_go');
+      });
+      musicContainer.classList.add('music_container_transparent');
+      setTimeout(() =>  musicContainer.style.display = 'none', 100);
+      playerWrapper.classList.remove('player_wrapper-visible');
+      playerCoating.classList.remove('player_container_coating_none');
+      Array.from(root.children).forEach(container => {
+        if (evt.target.classList.contains(container.dataset.id)) {
+          container.style.display = 'flex';
+          setTimeout(() => container.classList.add('dynamic_visible'), 100);
+        } else {
+          container.classList.remove('dynamic_visible');
+          container.style.display = 'none';
+        }
+      }); 
+      console.log(JSON.stringify(concertArr));
+      if (evt.target.classList.contains('chat_nav')) {
+        chats(document.querySelector('.chat'));
+      }
+      if (evt.target.classList.contains('concerts_nav')) {
+        dynamicVisible(createConcertsNode); 
+      }   
+    } else {
+      Array.from(root.children).forEach(container => {
+        container.classList.remove('dynamic_visible');
+        container.style.display = 'none';
+      });
+      musicNavHandler(evt);
+    }
+  }
+}
 
 function addEclipse() { 
   const interval = setInterval(eclipse, 30);
@@ -225,6 +260,13 @@ function startAnimate() {
   getFire();
   addEclipse();
 }
+
+Array.from(albumWrapper).forEach(album => album.addEventListener('click', addPlayList));
+playerNav.addEventListener('click',(evt) => {playerNavHandler(evt,currentAlbum)});
+playerContent.addEventListener('timeupdate', (evt) => {timeupdateHandler(evt, currentAlbum)});
+brightnessRange.addEventListener('input', brightnessRangeHandler);
+navMenu.addEventListener('click', navMenuHandler);
+window.addEventListener('load', startAnimate);
 
 /* --------------------- audio objects--------------------*/
 
