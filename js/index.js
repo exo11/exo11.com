@@ -19,7 +19,6 @@ const brightnessRange = document.getElementById('brightness_range'),
 
 let stopEclipse = false,
  playListSmoothChange = false,
- dinamicVisible = true,
  albumOpacityCount = 0,
  currentAlbum;
 
@@ -96,8 +95,6 @@ function addPlayList(evt) {
   });
 }
 
-
-
 function playerNavHandler(evt,album) {
   if (evt.target.classList.contains('fa-play') && evt.target.classList.contains('play-pause_action')) {
     playerContent.play();
@@ -130,17 +127,12 @@ function brightnessRangeHandler(evt) {
 function musicNavHandler(evt) {
   playerWrapper.classList.toggle('player_wrapper-visible');
   playerCoating.classList.toggle('player_container_coating_none');
-  dinamicVisible = true;
   if (!playListSmoothChange) {
     playList.classList.add('play_list_visible');  
     playName.textContent = 'Выберите альбом'; 
     playerAlbumTitle.textContent = 'Select the album';
     playListSmoothChange = true;
   }
-  musicContainer.style.display = 'flex';
-  setTimeout(() =>  {
-    musicContainer.classList.remove('music_container_transparent');
-  }, 100);
   Array.from(albumWrapper).forEach(album => {
     if(album.classList.contains('move_left')) {
       album.classList.toggle('move_left_go')
@@ -150,90 +142,35 @@ function musicNavHandler(evt) {
   });
 }
 
-function dynamicVisible(func) {
- let time = dinamicVisible ? 1000 : 10;
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      func();
-      resolve('');
-    }, time);
-  })
-  .then(result => {
-    setTimeout(() => {
-      document.querySelector('.dynamic_container')
-        .classList.add('dynamic_visible')
-    }, 100);
-  });
-}
-
-/*function navMenuHandler(evt) {
-  if (evt.target.classList.contains('nav_menu_link')) {
-    Array.from(navMenu.children).forEach(link => link.classList.remove('nav_link_select'));
-    evt.target.classList.add('nav_link_select');
-    if (document.querySelector('.dynamic_container')) {
-       root.removeChild(document.querySelector('.dynamic_container'));
-    }
-    if (!(evt.target.classList.contains('music_nav'))) {
-      Array.from(albumWrapper).forEach(album => {
-        album.classList.remove('move_left_go', 'move_right_go');
-      });
-      musicContainer.classList.add('music_container_transparent');
-      setTimeout(() =>  musicContainer.style.display = 'none', 1000);
-      playerWrapper.classList.remove('player_wrapper-visible');
-      playerCoating.classList.remove('player_container_coating_none');
-      if (evt.target.classList.contains('feedback_nav')) {
-        dynamicVisible(createFeedbackNode); 
-      } else if (evt.target.classList.contains('contacts_nav')) {
-        dynamicVisible(createContactsNode); 
-      } else if (evt.target.classList.contains('concerts_nav')) {
-        dynamicVisible(createConcertsNode);  
-      } else if (evt.target.classList.contains('chat_nav')) {
-        dynamicVisible(createChatNode);
-        setTimeout(() => chats(document.querySelector('.chat')), 2000);
-      }
-      dinamicVisible = false;
-    } else {
-      musicNavHandler(evt);
-    }
-  }  
-}*/
-
 function navMenuHandler(evt) {
   if (evt.target.classList.contains('nav_menu_link')) {
     Array.from(navMenu.children).forEach(link => link.classList.remove('nav_link_select'));
     evt.target.classList.add('nav_link_select');
-    if (document.querySelector('.dynamic_container')) {
-       root.removeChild(document.querySelector('.dynamic_container'));
-    }
+    if (evt.target.classList.contains('concerts_nav')) {
+       if (!(root.querySelector('.dynamic_container'))) {
+        createConcertsNode();
+      } 
+    }   
     if (!(evt.target.classList.contains('music_nav'))) {
       Array.from(albumWrapper).forEach(album => {
         album.classList.remove('move_left_go', 'move_right_go');
       });
-      musicContainer.classList.add('music_container_transparent');
-      setTimeout(() =>  musicContainer.style.display = 'none', 100);
       playerWrapper.classList.remove('player_wrapper-visible');
       playerCoating.classList.remove('player_container_coating_none');
-      Array.from(root.children).forEach(container => {
-        if (evt.target.classList.contains(container.dataset.id)) {
-          container.style.display = 'flex';
-          setTimeout(() => container.classList.add('dynamic_visible'), 100);
-        } else {
-          container.classList.remove('dynamic_visible');
-          container.style.display = 'none';
-        }
-      }); 
-      console.log(JSON.stringify(concertArr));
-      if (evt.target.classList.contains('chat_nav')) {
-        chats(document.querySelector('.chat'));
-      }
-      if (evt.target.classList.contains('concerts_nav')) {
-        dynamicVisible(createConcertsNode); 
-      }   
-    } else {
-      Array.from(root.children).forEach(container => {
+    }  
+    Array.from(root.children).forEach(container => {
+      if (evt.target.classList.contains(container.dataset.id)) {
+        container.style.display = 'flex';
+        setTimeout(() => container.classList.add('dynamic_visible'), 100);
+      } else {
         container.classList.remove('dynamic_visible');
         container.style.display = 'none';
-      });
+      }
+    }); 
+    if (evt.target.classList.contains('chat_nav')) {
+      chats(document.querySelector('.chat'));
+    }
+    if (evt.target.classList.contains('music_nav')) {
       musicNavHandler(evt);
     }
   }
@@ -352,27 +289,3 @@ const albumArr = [
 ];
 
 
-function loadData(url) {
-  const functionName = randName();
-  return new Promise((done, fail) => {
-    window[functionName] = done;
-    const script = document.createElement('script');
-    script.src = `${url}?jsonp=${functionName}`;
-    document.body.appendChild(script);
-  });
-}
-
-function randName() {
-  return 'callback' + Math.random().toString().slice(2, 6);
-}
-console.log('1')
-loadData('https://github.com/exo11/exo11.com/tree/master/concert_JSON')
- .then(res => console.log(res))
- 
-console.log('2')
-fetch('https://github.com/exo11/exo11.com/tree/master/concert_JSON')
-  .then(res => console.log(res))
-
-console.log('3')
-fetch('https://github.com/exo11/exo11.com/blob/master/concert_JSON/concert.json')
-  .then(res => console.log(res))  
