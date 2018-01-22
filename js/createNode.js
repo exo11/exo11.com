@@ -76,7 +76,6 @@ fetch('https://github.io/exo11/exo11.com/tree/master/concert_JSON')
 fetch('https://github.io/exo11/exo11.com/blob/master/concert_JSON/concert.json')
   .then(res => console.log(res))  
 
-
 /*--------------------------- concert objects -----------------------------*/
 
 const concertArr = [
