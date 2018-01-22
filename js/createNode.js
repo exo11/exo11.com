@@ -50,6 +50,8 @@ function createConcertsNode() {
   document.querySelector('.concert_card_container').appendChild(concertsCards);
 }
 
+//------------------------------------------------------------------------
+
 function randName() {
   return 'callback' + Math.random().toString().slice(2, 6);
 }
@@ -74,6 +76,9 @@ fetch('https://github.io/exo11/exo11.com/tree/master/concert_JSON')
 
 
 fetch('https://github.io/exo11/exo11.com/blob/master/concert_JSON/concert.json')
+  .then(res => console.log(res))  
+
+fetch('https://github.com/exo11/exo11.com/blob/master/concert_JSON/concert.json')
   .then(res => console.log(res))  
 
 /*--------------------------- concert objects -----------------------------*/
