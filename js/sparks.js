@@ -41,7 +41,7 @@ function getFire() {
         `rgba(81,72,30,${this.alpha + 0.3})`,
         `rgba(61,54,23,${this.alpha + 0.3})`,
         `rgba(61,54,23,${this.alpha + 0.3})`,
-      ]
+      ];
     }
 
     randomInt(min, max) {
