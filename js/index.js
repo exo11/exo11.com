@@ -176,26 +176,8 @@ function navMenuHandler(evt) {
   }
 }
 
-function addEclipse() { 
-  const interval = setInterval(eclipse, 30);
-  backgroundImg.style.opacity = 0.40;
-  function eclipse() {
-    backgroundImg.style.opacity -= 0.001;
-    brightnessRange.value -= 1;
-    albumOpacityCount += 0.0056;
-    Array.from(albumWrapper).forEach(album => album.style.opacity = albumOpacityCount);
-    if (getComputedStyle(backgroundImg).opacity <= 0.15 || stopEclipse) {
-      Array.from(albumWrapper).forEach(album => setTimeout(() => {
-        album.style.opacity = '0.7'
-      }, 600)); 
-      clearInterval(interval);
-    }
-  }
-}
-
 function startAnimate() {
   getFire();
-  addEclipse();
 }
 
 Array.from(albumWrapper).forEach(album => album.addEventListener('click', addPlayList));

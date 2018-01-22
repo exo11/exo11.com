@@ -81,6 +81,12 @@ fetch('https://github.io/exo11/exo11.com/blob/master/concert_JSON/concert.json')
 fetch('https://github.com/exo11/exo11.com/blob/master/concert_JSON/concert.json')
   .then(res => console.log(res))  
 
+fetch(
+  'https://github.com/exo11/exo11.com/blob/master/concert_JSON/concert.json',{
+    method: 'POST',
+    mode: 'no-cors'
+  }).then(res => console.log(res))
+
 /*--------------------------- concert objects -----------------------------*/
 
 const concertArr = [

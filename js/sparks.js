@@ -96,11 +96,25 @@ function getFire() {
 
   sparksBtn.addEventListener('click' , sparksBtnHandler);
 
+  backgroundImg.style.opacity = 0.40;
+
+  function eclipse() {
+    if (!(getComputedStyle(backgroundImg).opacity <= 0.15 || stopEclipse)) {
+      backgroundImg.style.opacity -= 0.001;
+      brightnessRange.value -= 1;
+    }
+      if (albumOpacityCount <= 0.9) {
+      Array.from(albumWrapper).forEach(album => album.style.opacity = albumOpacityCount);
+      albumOpacityCount += 0.0056;
+    }
+  }
+
   function animate() {
     if(animateSpark) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       sparks.forEach(spark => spark.draw());
     }
+    eclipse();
     requestAnimationFrame(animate);
   }
 };
