@@ -27,7 +27,7 @@ function getFire() {
       this.pos.x = Math.random() * canvas.width;
       this.pos.y = canvas.height + Math.random() * 100;
       this.alpha = 0.1 + Math.random() * 0.3;
-      this.scale = 0.1 + Math.random() * 0.3;
+      this.scale = (0.1 + Math.random() * 0.3) * 3;
       this.velocity = Math.random();
       this.color = [
         `rgba(62,39,0,${this.alpha + 0.3})`,
@@ -55,8 +55,8 @@ function getFire() {
       this.pos.y -= this.velocity;
       this.alpha -= 0.0005;
       ctx.beginPath();
-      ctx.arc(this.pos.x, this.pos.y, this.scale * 3, 0, 2 * Math.PI, false);
-      ctx.fillStyle = this.color[this.randomInt(0,10)];
+      ctx.arc(this.pos.x, this.pos.y, this.scale, 0, 2 * Math.PI, false);
+      ctx.fillStyle = this.color[this.randomInt(0, this.color.length -1)];
       ctx.fill();
     };
 
