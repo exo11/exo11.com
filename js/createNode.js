@@ -22,6 +22,9 @@ function createElement(node) {
 }
 
 function createConcertsNode() {
+  fetch('concert_JSON/concert.json')
+  .then(res => res.json()) 
+  .then(concertArr => { 
   const concertsNode = e('div',{'class': 'dynamic_container', 'data-id': 'concerts_nav'},
     e(
       'div',{'class': 'concert_card_wrapper'},
@@ -29,7 +32,6 @@ function createConcertsNode() {
       e('div', {'class': 'concert_card_container'},''),
     )
   );  
-  
   const concertsCards = concertArr.reduce((fragment,concert) => {
     let concertCard = e('div', {'class': 'concert_card'},
       e('div',{'class': 'concert_card_title'}, concert.data),
@@ -45,77 +47,13 @@ function createConcertsNode() {
     fragment.appendChild(createElement(concertCard));
     return fragment;
   },document.createDocumentFragment());
-  
   document.getElementById('root').appendChild(createElement(concertsNode));
   document.querySelector('.concert_card_container').appendChild(concertsCards);
-}
-
-//------------------------------------------------------------------------
-
-function randName() {
-  return 'callback' + Math.random().toString().slice(2, 6);
-}
-
-function loadData(url) {
-  const functionName = randName();
-  return new Promise((done, fail) => {
-    window[functionName] = done;
-    const script = document.createElement('script');
-    script.src = `${url}?jsonp=${functionName}`;
-    document.body.appendChild(script);
+  })
+  .then(() => {
+    setTimeout(() => {
+      root.querySelector('.dynamic_container').classList.add('dynamic_visible')
+    }, 10);
   });
 }
 
-
-loadData('https://github.io/exo11/exo11.com/tree/master/concert_JSON')
- .then(res => console.log(res))
- 
-
-fetch('https://github.io/exo11/exo11.com/tree/master/concert_JSON')
-  .then(res => console.log(res))
-
-
-fetch('https://github.io/exo11/exo11.com/blob/master/concert_JSON/concert.json')
-  .then(res => console.log(res))  
-
-fetch('https://github.com/exo11/exo11.com/blob/master/concert_JSON/concert.json')
-  .then(res => console.log(res))  
-
-fetch(
-  'https://github.com/exo11/exo11.com/blob/master/concert_JSON/concert.json',{
-    method: 'POST',
-    mode: 'no-cors'
-  }).then(res => console.log(res))
-
-/*--------------------------- concert objects -----------------------------*/
-
-const concertArr = [
-  {
-    data: '21/09/2125',
-    club: 'Cupboard Under the Stairs', 
-    address: 'Number 4 Privet Drive, Little Whinging, Surrey, England',
-    time: '19:00',
-    clubLink:'https://olimpik.com.ru' 
-  },
-  {
-    data: '22/09/2125',
-    club: 'Cupboard Under the Stairs', 
-    address: 'Number 4 Privet Drive, Little Whinging, Surrey, England',
-    time: '15:00',
-    clubLink:'http://www.wembleystadium.com' 
-  },
-  {
-    data: '11/11/2125',
-    club: 'Cupboard Under the Stairs', 
-    address: 'Number 4 Privet Drive, Little Whinging, Surrey, England',
-    time: '17:00',
-    clubLink:'http://www.luzhniki.ru' 
-  },
-  {
-    data: '17/07/2127',
-    club: 'Cupboard Under the Stairs', 
-    address: 'Number 4 Privet Drive, Little Whinging, Surrey, England',
-    time: '21:00',
-    clubLink:'http://www.wembleystadium.com' 
-  }
-];
