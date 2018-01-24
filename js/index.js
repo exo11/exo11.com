@@ -20,12 +20,8 @@ const brightnessRange = document.getElementById('brightness_range'),
 let stopEclipse = false,
  playListSmoothChange = false,
  albumOpacityCount = 0,
- albumArr,
+ albumArr = [],
  currentAlbum;
-
-fetch('AlbumArr/albumArr.json')
-  .then(res => res.json())
-  .then(albums => {albumArr = albums});
 
 function addPause() {
   document.querySelector('.fa-play').classList.remove('play-pause_action');
@@ -87,7 +83,22 @@ function addPlayList(evt) {
   evt.target.classList.add('album_wrapper_selected');
   playListVisible(evt);
   musicNav.classList.add('nav_link_select');
-  albumArr.forEach(album => {
+  playerAlbumTitle.textContent = 'Loading...';
+  playName.textContent = 'Загрузка...'
+  if (albumArr.length === 0) {
+    fetch('AlbumArr/albumArr.json')
+      .then(res => res.json())
+      .then(arr => {
+        albumArr = arr;
+        addAlbums(albumArr, evt);
+      });
+  } else {
+    addAlbums(albumArr, evt);
+  }
+}
+
+function addAlbums(arr, evt) {
+  arr.forEach(album => {
     playerContent.pause();
     playerContent.currentTime = 0;
     if (evt.target.id === album.id) {
