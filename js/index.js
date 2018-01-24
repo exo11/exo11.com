@@ -25,7 +25,7 @@ let stopEclipse = false,
 
 fetch('AlbumArr/albumArr.json')
   .then(res => res.json())
-  .then(albums => albumArr = albums);
+  .then(albums => {albumArr = albums});
 
 function addPause() {
   document.querySelector('.fa-play').classList.remove('play-pause_action');
