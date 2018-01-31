@@ -15,6 +15,8 @@ const brightnessRange = document.getElementById('brightness_range'),
   navMenu = document.querySelector('.nav_menu'),
   playerCoating = document.querySelector('.player_container_coating'),
   musicContainer = document.querySelector('.music_container'),
+  preloader = document.querySelector('.preloader'),
+  preloaderLogo = document.querySelector('.preloader_logo'),
   playerContent = document.querySelector('.player_content');
 
 let stopEclipse = false,
@@ -192,7 +194,9 @@ function navMenuHandler(evt) {
   }
 }
 
-function startAnimate() {
+function loadHundler() {
+  preloader.classList.add('peloader_invisible');
+  preloaderLogo.classList.add('preloader_logo_invisible');
   getFire();
 }
 
@@ -201,7 +205,7 @@ playerNav.addEventListener('click',(evt) => {playerNavHandler(evt,currentAlbum)}
 playerContent.addEventListener('timeupdate', (evt) => {timeupdateHandler(evt, currentAlbum)});
 brightnessRange.addEventListener('input', brightnessRangeHandler);
 navMenu.addEventListener('click', navMenuHandler);
-window.addEventListener('load', startAnimate);
+window.addEventListener('load', loadHundler);
 
 
 
