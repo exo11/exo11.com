@@ -200,17 +200,13 @@ function loadHandler() {
   getFire();
 }
 
-function domContentLoadedHandler() {
-  preloaderLogo.classList.remove('preloader_logo_invisible');
-}
-
 Array.from(albumWrapper).forEach(album => album.addEventListener('click', addPlayList));
 playerNav.addEventListener('click',(evt) => {playerNavHandler(evt,currentAlbum)});
 playerContent.addEventListener('timeupdate', (evt) => {timeupdateHandler(evt, currentAlbum)});
 brightnessRange.addEventListener('input', brightnessRangeHandler);
 navMenu.addEventListener('click', navMenuHandler);
 window.addEventListener('load', loadHandler);
-document.addEventListener("DOMContentLoaded", domContentLoadedHandler);
+
 
 
 
