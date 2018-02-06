@@ -2,42 +2,47 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Exo11</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <title>Exo11</title>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Athiti:200,300,400" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> 
-	<link rel="stylesheet" href="style/style.css" type="text/css"/>
-	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/style.css" type="text/css"/>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,500' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<div class="main_wrapper">
+    <div class="main_wrapper">
         <div class="preloader">
-            <img class="preloader_logo" src="exo11_7_blue.png" alt="logo">
+            <div class="preloader_wrapper">
+                <img class="preloader_logo" src="exo11_7_blue.png" alt="logo">
+                <div class="preloader_animate-line preloader_logo_border"></div>
+                <div class="preloader_animate-line preloader_logo_border_two"></div>
+                <div class="preloader_animate-line preloader_logo_border_three"></div>
+                <div class="preloader_animate-line preloader_logo_border_thour"></div>
+            </div>
         </div>
-		<img id="backgroundImg"class="background_img" src="Main_background.jpg" alt="" >
+        <img id="backgroundImg"class="background_img" src="Main_background.jpg" alt="" >
         <div class="nav">
-			<div class="nav_logo-wrapper">
-				<a href="#" class="nav_logo-wrapper_link"><img class="nav_logo-wrapper_logo" src="exo11_7.png" alt="logo"></a>
-			</div>
-			<div class="nav_menu">
-				<a class="nav_menu_link chat_nav" href="#">Chat</a>
+            <div class="nav_logo-wrapper">
+                <a href="#" class="nav_logo-wrapper_link"><img class="nav_logo-wrapper_logo" src="exo11_7.png" alt="logo"></a>
+            </div>
+            <div class="nav_menu">
+                <a class="nav_menu_link chat_nav" href="#">Chat</a>
                 <a class="nav_menu_link concerts_nav" href="#">Concerts</a>
-				<a class="nav_menu_link contacts_nav" href="#">Contacts</a>
-				<a class="nav_menu_link feedback_nav" href="#">Feedback</a>
-				<a class="nav_menu_link orange music_nav" href="#">Music</a>
-			</div>
-		</div>
-		
-		<div id="canvas-wrapper" class="canvas-wrapper">
+                <a class="nav_menu_link contacts_nav" href="#">Contacts</a>
+                <a class="nav_menu_link feedback_nav" href="#">Feedback</a>
+                <a class="nav_menu_link orange music_nav" href="#">Music</a>
+            </div>
+        </div>
+        
+        <div id="canvas-wrapper" class="canvas-wrapper">
             <canvas id="spark-canvas" class="spark-canvas" width="150" height="300"></canvas>
         </div>
         <div class="content_wrapper">
-        	
+            
             <div id="root">
                 <div class="music_container dynamic_visible" data-id="music_nav">
                     <div class="music_left">
@@ -59,6 +64,8 @@
                             <div class="player_album-title"></div>
                         </div>
                         <div class="play_list_wrapper">
+                            <!--<div class="play_list_right_border"></div>
+                            <div class="play_list_top_border"></div>-->
                             <div class="play_list">
                                 <div class="cover_eclipse"></div>
                                 <div class="play_list-coating"></div>
@@ -170,49 +177,49 @@
 
             </div>
            
-        	<div class="footer">
-        		<div class="footer_btn-wrapper">
-        			<i id="sparks_btn" class="fa fa-fire fa-2x" aria-hidden="true"></i>
-        		</div>
-        		<div class="footer_social">
-        			<div class="footer_social_logo-wrapper">
-        			    <a href="https://github.com/exo11" class="social_logo-link">
-        				    <i class="fa fa-github-alt fa-2x social_logo" aria-hidden="true"></i>
-        			     </a>
-					    <a href="https://play.google.com/store/music/artist/%D0%AD%D1%85%D0%BE11?id=Acszgszcotddrgx7e35gzz76dvy" class="social_logo-link">
-						    <img src="social_icon/google_play.png" alt="" class="social_logo google_play">
-        			    </a>
-					    <a href="https://music.yandex.ru/artist/2624253" class="social_logo-link">
-        				    <img src="social_icon/ymusic-logo-cut.png" alt="" class="social_logo yandex_music">
-        			    </a>
-					    <a href="https://vk.com/exo11" class="social_logo-link">
-        				    <img src="social_icon/vk-logo.png" alt="" class="social_logo vk">
-        			    </a>
-					    <a href="https://www.last.fm/ru/music/%D0%AD%D1%85%D0%BE11" class="social_logo-link">
-        				    <img src="social_icon/last-fm.png" alt="" class="social_logo last_fm">
-        			    </a>
-					    <a href="#" class="social_logo-link">
-        				    <img src="social_icon/twiter-logo.png" alt="" class="social_logo twitter">
-        			    </a>
-					    <a href="https://www.apple.com/ru/itunes/" class="social_logo-link">
-        				    <img src="social_icon/itunes.png" alt="" class="social_logo itunes">
-        			    </a>
-					</div>
-        		</div>
-        		<div class="footer_range-wrapper">
-        			<div class="footer_range-wrapper_container">
-        				<div class="footer_range-wrapper_moon">
-        					<i class="fa fa-moon-o fa-1x" aria-hidden="true"></i>
-        				</div>
-        				<div class="footer_range-wrapper_range">
-        					<input id="brightness_range" type="range" value="400" min="150" max="400"/>
-        			    </div>
-        				<div class="footer_range-wrapper_sun">
-        				    <i class="fa fa-sun-o fa-1x" aria-hidden="true"></i>
-						</div>
-					</div>
-        		</div>
-        	</div>
+            <div class="footer">
+                <div class="footer_btn-wrapper">
+                    <i id="sparks_btn" class="fa fa-fire fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="footer_social">
+                    <div class="footer_social_logo-wrapper">
+                        <a href="https://github.com/exo11" class="social_logo-link">
+                            <i class="fa fa-github-alt fa-2x social_logo" aria-hidden="true"></i>
+                         </a>
+                        <a href="https://play.google.com/store/music/artist/%D0%AD%D1%85%D0%BE11?id=Acszgszcotddrgx7e35gzz76dvy" class="social_logo-link">
+                            <img src="social_icon/google_play.png" alt="" class="social_logo google_play">
+                        </a>
+                        <a href="https://music.yandex.ru/artist/2624253" class="social_logo-link">
+                            <img src="social_icon/ymusic-logo-cut.png" alt="" class="social_logo yandex_music">
+                        </a>
+                        <a href="https://vk.com/exo11" class="social_logo-link">
+                            <img src="social_icon/vk-logo.png" alt="" class="social_logo vk">
+                        </a>
+                        <a href="https://www.last.fm/ru/music/%D0%AD%D1%85%D0%BE11" class="social_logo-link">
+                            <img src="social_icon/last-fm.png" alt="" class="social_logo last_fm">
+                        </a>
+                        <a href="#" class="social_logo-link">
+                            <img src="social_icon/twiter-logo.png" alt="" class="social_logo twitter">
+                        </a>
+                        <a href="https://www.apple.com/ru/itunes/" class="social_logo-link">
+                            <img src="social_icon/itunes.png" alt="" class="social_logo itunes">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer_range-wrapper">
+                    <div class="footer_range-wrapper_container">
+                        <div class="footer_range-wrapper_moon">
+                            <i class="fa fa-moon-o fa-1x" aria-hidden="true"></i>
+                        </div>
+                        <div class="footer_range-wrapper_range">
+                            <input id="brightness_range" type="range" value="400" min="150" max="400"/>
+                        </div>
+                        <div class="footer_range-wrapper_sun">
+                            <i class="fa fa-sun-o fa-1x" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

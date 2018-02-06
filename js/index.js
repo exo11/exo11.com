@@ -16,7 +16,7 @@ const brightnessRange = document.getElementById('brightness_range'),
   playerCoating = document.querySelector('.player_container_coating'),
   musicContainer = document.querySelector('.music_container'),
   preloader = document.querySelector('.preloader'),
-  preloaderLogo = document.querySelector('.preloader_logo'),
+  preloaderWrapper = document.querySelector('.preloader_wrapper'),
   playerContent = document.querySelector('.player_content');
 
 let stopEclipse = false,
@@ -70,9 +70,9 @@ function changeTracks(album, isForward = true) {
 }
 
 function addPlayList(evt) {
-	playerWrapper.classList.add('player_wrapper-visible');
+  playerWrapper.classList.add('player_wrapper-visible');
   playerCoating.classList.add('player_container_coating_none');
-	Array.from(albumWrapper).forEach(album => {
+  Array.from(albumWrapper).forEach(album => {
     album.classList.remove('album_wrapper_selected');
     if(album.classList.contains('move_left')) {
       album.classList.add('move_left_go')
@@ -194,9 +194,10 @@ function navMenuHandler(evt) {
   }
 }
 
-function loadHandler() {
+
+function loadHundler() {
   preloader.classList.add('peloader_invisible');
-  preloaderLogo.classList.add('preloader_logo_invisible');
+  preloaderWrapper.classList.add('preloader_wrapper_invisible');
   getFire();
 }
 
@@ -205,7 +206,7 @@ playerNav.addEventListener('click',(evt) => {playerNavHandler(evt,currentAlbum)}
 playerContent.addEventListener('timeupdate', (evt) => {timeupdateHandler(evt, currentAlbum)});
 brightnessRange.addEventListener('input', brightnessRangeHandler);
 navMenu.addEventListener('click', navMenuHandler);
-window.addEventListener('load', loadHandler);
+window.addEventListener('load', loadHundler);
 
 
 
